@@ -43,3 +43,6 @@ https://stooq.com/q/l/?s={stock_code}&f=sd2t2ohlcv&h&e=csv .
 
 ## Possible improvements
 * Store chat messages to retrieve them when a user join to a chat room.
+
+## Creating a Client to connect to the Chat Hub
+* You can connect your own application to send messages into the chat using the url of the server, 'https://<servername>:<port>/chat' . There are differents clients for .Net, Java, TypeScript and JavaScript https://docs.microsoft.com/en-us/aspnet/core/signalr/java-client?view=aspnetcore-6.0
