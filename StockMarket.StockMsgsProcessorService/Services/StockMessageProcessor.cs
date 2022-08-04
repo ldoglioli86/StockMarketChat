@@ -20,7 +20,7 @@ namespace StockMarket.StockMsgsProcessor.Services
             {
                 string stockValue = await _stooqService.GetStockValueByCode(stock_code);
 
-                var messageToSend = $"{stock_code} quote is ${stockValue} per share.";
+                var messageToSend = $"{stock_code.ToUpper()} quote is ${stockValue} per share.";
 
                 await _chatHubService.SendMessage(botUser, stockmsg.Room, messageToSend);
             } catch (Exception e)
