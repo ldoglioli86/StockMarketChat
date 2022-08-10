@@ -5,12 +5,11 @@ namespace StockMarket.StockMsgsProcessor.Services
     public class StooqWebDataService : IStooqService
     {
         private readonly HttpClient _httpClient;
-        private readonly string apiBaseUrl = "https://stooq.com/q/l/";
 
-        public StooqWebDataService()
+        public StooqWebDataService(IConfiguration configuration)
         {
             _httpClient = new HttpClient();
-            _httpClient.BaseAddress = new Uri(apiBaseUrl);
+            _httpClient.BaseAddress = new Uri(configuration.GetSection("StooqApiUrl").Value);
 
         }
 
