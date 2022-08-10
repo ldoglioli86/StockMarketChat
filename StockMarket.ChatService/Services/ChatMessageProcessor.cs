@@ -7,7 +7,7 @@ namespace StockMarket.Chat.Services
     public class ChatMessageProcessor : IChatMessageProcessor
     {
         // RegEx Pattern to detect commands
-        private const string commandPattern = @"^/[A-za-z]*=";
+        private const string _commandPattern = @"^/[A-za-z]*=";
 
         private readonly IRabbitStockMsgProducerService _rabbitService;
 
@@ -41,7 +41,7 @@ namespace StockMarket.Chat.Services
 
         private Match RegexCommandMatch(string message)
         {
-            return Regex.Match(message, commandPattern);
+            return Regex.Match(message, _commandPattern);
         }
 
         public string getValueForCommand(string command, string message)

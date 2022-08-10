@@ -9,17 +9,17 @@ namespace StockMarket.Chat.Controllers
     [ApiController]
     public class AuthenticationController : ControllerBase
     {
-        private readonly IAuthenticationService _service;
+        private readonly IAuthenticationService _authenticationService;
 
-        public AuthenticationController(IAuthenticationService service)
+        public AuthenticationController(IAuthenticationService authenticationService)
         {
-            _service = service;
+            _authenticationService = authenticationService;
         }
 
         [HttpPost("login/{username}/{password}")]
         public async Task<IActionResult> Login(string username, string password)
         {
-            var serviceResult = await _service.Login(username, password);
+            var serviceResult = await _authenticationService.Login(username, password);
 
             if (serviceResult.Successful)
             {

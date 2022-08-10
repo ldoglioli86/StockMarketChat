@@ -10,7 +10,7 @@ namespace StockMarket.Chat.Services
 
         public ChatUserService(IUnitOfWork unitOfWork)
         {
-            this._unitOfWork = unitOfWork;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<IEnumerable<ChatUser>> GetUsers()

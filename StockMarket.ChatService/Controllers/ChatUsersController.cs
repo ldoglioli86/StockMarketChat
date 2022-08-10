@@ -9,11 +9,11 @@ namespace JobsityChatService.Controllers
     [ApiController]
     public class ChatUsersController : ControllerBase
     {
-        private readonly IChatUserService _service;
+        private readonly IChatUserService _chatUserService;
 
-        public ChatUsersController(IChatUserService service)
+        public ChatUsersController(IChatUserService chatUserService)
         {
-            _service = service;
+            _chatUserService = chatUserService;
         }
 
         [HttpGet(Name = "GetUsers")]
@@ -22,7 +22,7 @@ namespace JobsityChatService.Controllers
         {
             try
             {
-                var users = await _service.GetUsers();
+                var users = await _chatUserService.GetUsers();
                 return Ok(users);
             }
             catch (Exception e) {
@@ -34,7 +34,7 @@ namespace JobsityChatService.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> CreateUser(ChatUserDto userForCreateDto)
         {
-            var userFromRepo = await _service.GetUserByUserName(userForCreateDto.UserName);
+            var userFromRepo = await _chatUserService.GetUserByUserName(userForCreateDto.UserName);
 
             if (userFromRepo != null)
             {
@@ -50,7 +50,7 @@ namespace JobsityChatService.Controllers
 
             try
             {
-                await _service.CreateUser(userForCreate, userForCreateDto.Password);
+                await _chatUserService.CreateUser(userForCreate, userForCreateDto.Password);
                 return Ok(string.Format("User {0} was created succesfully.", userForCreateDto.UserName));
             }
             catch (Exception e) {
