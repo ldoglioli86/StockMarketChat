@@ -25,6 +25,9 @@ namespace StockMarket.StockMsgsProcessor.Services
                 await _chatHubService.SendMessage(botUser, stockmsg.Room, messageToSend);
             } catch (Exception e)
             {
+                if (e.Message.Contains("Unknown Stock Code")) {
+                    await _chatHubService.SendMessage(botUser, stockmsg.Room, $"{stock_code.ToUpper()} is not a valid Stock Code.");
+                }
                 Console.WriteLine(e.Message);
             }
         }
