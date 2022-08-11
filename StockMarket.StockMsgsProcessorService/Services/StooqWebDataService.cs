@@ -1,4 +1,7 @@
-﻿using StockMarket.StockMsgsProcessor.Services.Interfaces;
+﻿using System.Globalization;
+using CsvHelper;
+using StockMarket.StockMsgsProcessor.Services.Interfaces;
+using StockMarket.StockMsgsProcessorService.Models;
 
 namespace StockMarket.StockMsgsProcessor.Services
 {
@@ -19,17 +22,33 @@ namespace StockMarket.StockMsgsProcessor.Services
             return await _httpClient.GetStringAsync(uriResult);
         }
 
-        public async Task<string> GetStockValueByCode(string stock_code) {
+        public async Task<StockValue> GetStockValueByCode(string stock_code)
+        {
             var csvValues = await GetCsvStockValuesByStockCode(stock_code);
 
-            var csvLines = csvValues.Split("\r\n");
-            var closeValueIndex = csvLines[0].Split(",").ToList().IndexOf("Close");
+            using (var reader = new StringReader(csvValues))
+            {
+                using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+                {
+                    csv.Read();
+                    csv.ReadHeader();
 
-            var stockValues = csvLines[1].Split(",");
-            if (stockValues[1] == "N/D") {
-                throw new Exception("Unknown Stock Code");
+                    csv.Read();
+
+                    try
+                    {
+                        var stockValue = csv.GetRecord<StockValue>();
+                        return stockValue;
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("Invalid Stock Code.");
+                        return null;
+                    }
+                }
             }
-            return csvLines[1].Split(",")[closeValueIndex];
+            return null;
         }
     }
+    
 }

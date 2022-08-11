@@ -18,16 +18,15 @@ namespace StockMarket.StockMsgsProcessor.Services
             
             try
             {
-                string stockValue = await _stooqService.GetStockValueByCode(stock_code);
+                var stockValue = await _stooqService.GetStockValueByCode(stock_code);
 
-                var messageToSend = $"{stock_code.ToUpper()} quote is ${stockValue} per share.";
+                var messageToSend = stockValue != null ?
+                        $"{stock_code.ToUpper()} quote is ${stockValue.Close} per share." :
+                        $"{stock_code.ToUpper()} is not a valid Stock Code.";
 
                 await _chatHubService.SendMessage(botUser, stockmsg.Room, messageToSend);
             } catch (Exception e)
             {
-                if (e.Message.Contains("Unknown Stock Code")) {
-                    await _chatHubService.SendMessage(botUser, stockmsg.Room, $"{stock_code.ToUpper()} is not a valid Stock Code.");
-                }
                 Console.WriteLine(e.Message);
             }
         }
