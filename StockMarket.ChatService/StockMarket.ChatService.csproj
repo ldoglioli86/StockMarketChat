@@ -47,4 +47,9 @@
     <Folder Include="Persistence.Interfaces\" />
     <Folder Include="Hubs\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\StockMarket.Common\StockMarket.Common.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+  </ItemGroup>
 </Project>

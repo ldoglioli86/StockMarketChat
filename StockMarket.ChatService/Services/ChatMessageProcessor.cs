@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
-using StockMarket.Chat.Models;
 using StockMarket.Chat.Services.Interfaces;
+using StockMarket.Common.Models;
 
 namespace StockMarket.Chat.Services
 {

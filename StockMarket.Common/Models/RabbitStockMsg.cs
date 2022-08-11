@@ -1,4 +1,4 @@
-﻿namespace StockMarket.StockMsgsProcessor.Models
+﻿namespace StockMarket.Common.Models
 {
     public class RabbitStockMsg
     {

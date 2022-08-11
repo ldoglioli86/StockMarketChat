@@ -1,4 +1,4 @@
-﻿using StockMarket.Chat.Models;
+﻿using StockMarket.Common.Models;
 
 namespace StockMarket.Chat.Services.Interfaces
 {

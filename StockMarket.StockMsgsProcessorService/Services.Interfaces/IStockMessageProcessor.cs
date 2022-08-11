@@ -1,4 +1,4 @@
-﻿using StockMarket.StockMsgsProcessor.Models;
+﻿using StockMarket.Common.Models;
 
 namespace StockMarket.StockMsgsProcessor.Services.Interfaces
 {

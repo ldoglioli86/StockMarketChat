@@ -1,9 +1,9 @@
 ﻿using System.Text;
-using StockMarket.StockMsgsProcessor.Models;
 using StockMarket.StockMsgsProcessor.Services.Interfaces;
 using Newtonsoft.Json;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
+using StockMarket.Common.Models;
 
 namespace StockMarket.StockMsgsProcessor.Services
 {

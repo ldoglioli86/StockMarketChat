@@ -1,8 +1,8 @@
 ﻿using System.Text;
-using StockMarket.Chat.Models;
 using StockMarket.Chat.Services.Interfaces;
 using Newtonsoft.Json;
 using RabbitMQ.Client;
+using StockMarket.Common.Models;
 
 namespace StockMarket.Chat.Services
 {
